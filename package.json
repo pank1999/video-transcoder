@@ -1,0 +1,23 @@
+{
+  "name": "video-consumer",
+  "version": "1.0.0",
+  "description": "video consumer service",
+  "main": "index.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "tsc-watch --onSuccess \"node dist/index.js\""
+  },
+  "author": "Pankaj Pandey",
+  "license": "ISC",
+  "dependencies": {
+    "@aws-sdk/client-sqs": "^3.616.0",
+    "aws-lambda": "1.0.7",
+    "dot-env": "0.0.1",
+    "typescript": "5.5.3"
+  },
+  "devDependencies": {
+    "@types/aws-lambda": "^8.10.141",
+    "@types/node": "^20.14.11",
+    "tsc-watch": "^6.2.0"
+  }
+}
