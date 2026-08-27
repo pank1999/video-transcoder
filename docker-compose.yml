@@ -1,0 +1,43 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:15-alpine
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: transcoder
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  web:
+    image: node:22-alpine
+    working_dir: /app
+    volumes:
+      - ./web:/app
+    ports:
+      - "3000:3000"
+    environment:
+      - DATABASE_URL=postgresql://admin:password@db:5432/transcoder?schema=public
+      - AWS_REGION=us-east-1
+      - BUCKET_NAME=video-transcoding-input
+    command: >
+      sh -c "npm install && npx prisma db push && npm run dev"
+    depends_on:
+      - db
+
+  consumer:
+    image: node:22-alpine
+    working_dir: /app
+    volumes:
+      - .:/app
+    environment:
+      - AWS_REGION=us-east-1
+      - SQS_QUEUE_URL=https://sqs.us-east-1.amazonaws.com/123456789012/video-transcoder-s3-queue
+    command: >
+      sh -c "npm install && npm start"
+
+volumes:
+  postgres_data:

@@ -1,13 +1,7 @@
 import { ReceiveMessageCommand, SQSClient } from "@aws-sdk/client-sqs";
 import { S3Event } from "aws-lambda";
 const client = new SQSClient({
-  region: "us-east-1",
-  credentials: {
-    accessKeyId: process.env.AWS_ACCESS_KEY_ID || "AKIATL2EBYAWXY3CHTNB",
-    secretAccessKey:
-      process.env.AWS_SECRET_ACCESS_KEY ||
-      "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",
-  },
+  region: process.env.AWS_REGION || "us-east-1",
 });
 
 /**
