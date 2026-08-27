@@ -1,4 +1,4 @@
-*/node_modules
+*node_modules
 /dist
 /container/node_modules
 .env
