@@ -1,4 +1,5 @@
 import UploadForm from "./UploadForm";
+import AuthButtons from "./components/AuthButtons";
 import { ArrowRight, Layers, Zap, ShieldCheck, PlayCircle, BarChart3, Globe } from "lucide-react";
 
 export const metadata = {
@@ -23,14 +24,7 @@ export default function Page() {
             <a href="#pricing" className="text-sm font-medium text-gray-600 hover:text-black transition-colors">Pricing</a>
             <a href="#faq" className="text-sm font-medium text-gray-600 hover:text-black transition-colors">FAQ</a>
           </div>
-          <div className="flex gap-4 items-center">
-            <button className="text-sm font-medium text-gray-600 hover:text-black transition-colors hidden sm:block">
-              Log in
-            </button>
-            <button className="text-sm font-medium bg-black text-white hover:bg-gray-800 transition-colors px-5 py-2.5 rounded-full shadow-sm">
-              Sign Up Free
-            </button>
-          </div>
+          <AuthButtons />
         </div>
       </nav>
 
